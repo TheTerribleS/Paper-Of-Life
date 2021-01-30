@@ -10,6 +10,6 @@ public class Move : MonoBehaviour
         Vector3 Target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Target.z = transform.position.z;
 
-        transform.position = Vector3.MoveTowards(transform.position, Target, Speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, Target, (Speed * Time.deltaTime) * (Vector3.Distance(transform.position, Target) * 2));
     }
 }

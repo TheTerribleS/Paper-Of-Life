@@ -18,17 +18,9 @@ public class PlayerDeathManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // if collision is a trap or enemy
-        if ((collision.gameObject.GetComponent<Trap>() != null) || (collision.gameObject.GetComponent<Enemy>() != null))
+        if (collision.gameObject.GetComponent<Enemy>() != null)
         {
-            //HERE: call function for blackout animation
-            if (PlayerCheckpoint != null)
-            {
-                transform.position = PlayerCheckpoint.transform.position;
-            }
-            else
-            {
-                transform.position = SpawnPoint;
-            }
+            RespawnPlayer();
         }
     }
 
@@ -45,7 +37,23 @@ public class PlayerDeathManager : MonoBehaviour
             PlayerCheckpoint.GetComponent<SpriteShapeRenderer>().color = Color.black;
             PlayerCheckpoint.GetComponent<SpriteShapeRenderer>().color = new Color(190, 236, 37, 0.5f);
         }
+        else if (collision.gameObject.GetComponent<Trap>() != null)
+        {
+            RespawnPlayer();
+        }
     }
 
+    void RespawnPlayer()
+    {
+        //HERE: call function for blackout animation
+        if (PlayerCheckpoint != null)
+        {
+            transform.position = PlayerCheckpoint.transform.position;
+        }
+        else
+        {
+            transform.position = SpawnPoint;
+        }
+    }
 
 }
