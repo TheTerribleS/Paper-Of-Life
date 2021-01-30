@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class PlayerDeathManager : MonoBehaviour
 {
     Vector3 SpawnPoint;
+    Checkpoint PlayerCheckpoint;
 
     public float speed = 0.5f;
 
@@ -39,7 +41,14 @@ public class PlayerDeathManager : MonoBehaviour
         if ((collision.gameObject.GetComponent<Trap>() != null) || (collision.gameObject.GetComponent<Enemy>() != null))
         {
             //HERE: call function for blackout animation
-            transform.position = SpawnPoint;
+            if (PlayerCheckpoint != null)
+            {
+                transform.position = PlayerCheckpoint.transform.position;
+            }
+            else
+            {
+                transform.position = SpawnPoint;
+            }
         }
     }
 
@@ -47,7 +56,14 @@ public class PlayerDeathManager : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Checkpoint>() != null)
         {
-            SpawnPoint = collision.transform.position;
+            if (PlayerCheckpoint != null)
+            {
+                PlayerCheckpoint.GetComponent<SpriteShapeRenderer>().color = Color.black;
+                PlayerCheckpoint.GetComponent<SpriteShapeRenderer>().color = new Color(190, 236, 37, 1f);
+            } 
+            PlayerCheckpoint = collision.GetComponent<Checkpoint>();
+            PlayerCheckpoint.GetComponent<SpriteShapeRenderer>().color = Color.black;
+            PlayerCheckpoint.GetComponent<SpriteShapeRenderer>().color = new Color(190, 236, 37, 0.5f);
         }
     }
 
