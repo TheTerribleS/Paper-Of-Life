@@ -15,26 +15,6 @@ public class PlayerDeathManager : MonoBehaviour
         SpawnPoint = transform.position;
     }
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.position += new Vector3(0, speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.position += new Vector3(0, -speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position += new Vector3(- speed * Time.deltaTime, 0);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += new Vector3(speed * Time.deltaTime, 0);
-        }
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // if collision is a trap or enemy
