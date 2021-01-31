@@ -13,24 +13,31 @@ public class CinematicsContainer : MonoBehaviour
     
     public List<CinematicScenes> CinematicScenes;
 
+    public delegate void CinematicEvents();
+    public static event CinematicEvents StartCinematic, EndCinematic;
+
     public void StartImagesCinematic(string NameOfScene)
     {
-         currentCinematic = CinematicScenes.Find(x => x.CinematicSceneName == NameOfScene);
+        gameObject.SetActive(true); 
+        currentCinematic = CinematicScenes.Find(x => x.CinematicSceneName == NameOfScene);
         currentScene = 0;
-         DisplayOfFrame.sprite = currentCinematic.CinematicFrames[currentScene];
+        DisplayOfFrame.sprite = currentCinematic.CinematicFrames[currentScene];
+        StartCinematic();
     }
 
     public void NextScene()
     {
-        if (currentScene == currentCinematic.CinematicFrames.Count)
+        if (currentScene == currentCinematic.CinematicFrames.Count - 1)
         {
-            DisplayOfFrame.gameObject.SetActive(false);
+            gameObject.SetActive(false);
+            EndCinematic();
         }
         else
         {
             currentScene++;
             DisplayOfFrame.sprite = currentCinematic.CinematicFrames[currentScene];
         }
+        
     }
 
     public void PreviousScene()

@@ -16,8 +16,9 @@ public class EnemyCollider : MonoBehaviour
         parentEnemy = GetComponentInParent<Enemy>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("I read the collision");
         if (right)
             parentEnemy.xMovement = -parentEnemy.speed;
         else if (left)
@@ -26,7 +27,5 @@ public class EnemyCollider : MonoBehaviour
             parentEnemy.yMovement = -parentEnemy.speed;
         else if (down)
             parentEnemy.yMovement = parentEnemy.speed;
-
-
     }
 }
