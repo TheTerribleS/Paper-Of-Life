@@ -30,12 +30,7 @@ public class SmoothFollowing : MonoBehaviour
             Target = Player.transform.position;
         else
         {
-            Target = transform.position;
-        }
-
-        if (Vector3.Distance(Target, Player.transform.position) > 70f)
-        {
-            Target = transform.position;
+            Target =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
 
         Target.z = zLock;
