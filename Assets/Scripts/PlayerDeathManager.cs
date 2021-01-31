@@ -7,13 +7,15 @@ public class PlayerDeathManager : MonoBehaviour
 {
     Vector3 SpawnPoint;
     Checkpoint PlayerCheckpoint;
-    public Camera camera;
+    public SmoothFollowing camera;
+    Move PlayerMovement;
 
     public float speed = 0.5f;
 
     private void Awake()
     {
         SpawnPoint = transform.position;
+        PlayerMovement = GetComponent<Move>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -55,7 +57,6 @@ public class PlayerDeathManager : MonoBehaviour
         {
             transform.position = SpawnPoint;
         }
-        //camera.transform.position = transform.position;
+        StartCoroutine(camera.FollowPlayer());
     }
-
 }
