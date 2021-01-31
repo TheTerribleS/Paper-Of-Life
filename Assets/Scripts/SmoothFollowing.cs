@@ -8,21 +8,35 @@ public class SmoothFollowing : MonoBehaviour
                  zLock;
     public Move Player;
 
-    public bool didPlayerDie = false;
+    public bool didPlayerDie = false,
+                isACinematicActive = false;
 
     private void Start()
     {
         zLock = transform.position.z;
+        CinematicsContainer.StartCinematic += FreezeForCinematic;
+        CinematicsContainer.EndCinematic += UnfreezeForCinematic;
     }
 
     void Update()
     {
         Vector3 Target;
 
-        Target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        if (didPlayerDie)
+        if (!isACinematicActive)
+        {
+            Target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+        else if (didPlayerDie)
             Target = Player.transform.position;
+        else
+        {
+            Target = transform.position;
+        }
+
+        if (Vector3.Distance(Target, Player.transform.position) > 70f)
+        {
+            Target = transform.position;
+        }
 
         Target.z = zLock;
 
@@ -34,5 +48,14 @@ public class SmoothFollowing : MonoBehaviour
         didPlayerDie = true;
         yield return new WaitForSeconds(3);
         didPlayerDie = false;
+    }
+
+    public void FreezeForCinematic()
+    {
+        isACinematicActive = true;
+    }
+    public void UnfreezeForCinematic()
+    {
+        isACinematicActive = false;
     }
 }

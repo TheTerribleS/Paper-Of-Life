@@ -15,11 +15,15 @@ public class Move : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        CinematicsContainer.StartCinematic += FreezeForCinematic;
+        CinematicsContainer.EndCinematic += UnfreezeForCinematic;
     }
 
     void Update()
     {
         Vector3 Target;
+
+
         
         if (!didPlayerDie)
         {
@@ -54,10 +58,21 @@ public class Move : MonoBehaviour
         rb.AddForce(new Vector2(xForce, yForce));       
     }
 
+
+
     public IEnumerator WaitForCamera()
     {
         didPlayerDie = true;
         yield return new WaitForSeconds(3);
         didPlayerDie = false;
+    }
+
+    public void FreezeForCinematic()
+    {
+        speed = 0;
+    }
+    public void UnfreezeForCinematic()
+    {
+        speed = 1;
     }
 }
