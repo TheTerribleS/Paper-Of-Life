@@ -7,6 +7,7 @@ public class PlayerDeathManager : MonoBehaviour
 {
     Vector3 SpawnPoint;
     Checkpoint PlayerCheckpoint;
+    public Camera camera;
 
     public float speed = 0.5f;
 
@@ -30,12 +31,12 @@ public class PlayerDeathManager : MonoBehaviour
         {
             if (PlayerCheckpoint != null)
             {
-                PlayerCheckpoint.GetComponent<SpriteShapeRenderer>().color = Color.black;
-                PlayerCheckpoint.GetComponent<SpriteShapeRenderer>().color = new Color(190, 236, 37, 1f);
+                PlayerCheckpoint.GetComponent<SpriteRenderer>().color = Color.black;
+                PlayerCheckpoint.GetComponent<SpriteRenderer>().color = new Color(190, 236, 37, 1f);
             } 
             PlayerCheckpoint = collision.GetComponent<Checkpoint>();
-            PlayerCheckpoint.GetComponent<SpriteShapeRenderer>().color = Color.black;
-            PlayerCheckpoint.GetComponent<SpriteShapeRenderer>().color = new Color(190, 236, 37, 0.5f);
+            PlayerCheckpoint.GetComponent<SpriteRenderer>().color = Color.black;
+            PlayerCheckpoint.GetComponent<SpriteRenderer>().color = new Color(190, 236, 37, 0.5f);
         }
         else if (collision.gameObject.GetComponent<Trap>() != null)
         {
@@ -54,6 +55,7 @@ public class PlayerDeathManager : MonoBehaviour
         {
             transform.position = SpawnPoint;
         }
+        //camera.transform.position = transform.position;
     }
 
 }
