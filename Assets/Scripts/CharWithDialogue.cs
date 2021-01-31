@@ -9,17 +9,17 @@ public class CharWithDialogue : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponentInChildren<UIManager>() != null)
+        if (collision.GetComponent<Move>().GetComponent<UIManager>() != null)
         {
-            collision.GetComponentInChildren<UIManager>().UpdateAndShowDialogue(Name + ": " + DialogueToShow);
+            collision.GetComponent<Move>().GetComponent<UIManager>().UpdateAndShowDialogue(Name + ": " + DialogueToShow);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponentInChildren<UIManager>() != null)
+        if (collision.GetComponent<Move>().GetComponent<UIManager>() != null)
         {
-            collision.GetComponentInChildren<UIManager>().HideDialogue();
+            collision.GetComponent<Move>().GetComponent<UIManager>().HideDialogue();
         }
     }
 }
