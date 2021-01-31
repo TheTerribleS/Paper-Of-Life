@@ -8,10 +8,8 @@ public class ObjectThatNeedsItem : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("I read the collision");
         if (collision.gameObject.GetComponent<Inventory>() != null)
         {
-            Debug.Log("I read the player has an inventory");
             Inventory Inventory = collision.gameObject.GetComponent<Inventory>();
             if (Inventory.PlayerInventory.Find(Item => Item.nameOfItem == nameOfItemNeeded) != null)
             {

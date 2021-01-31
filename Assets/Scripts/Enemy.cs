@@ -32,25 +32,25 @@ public class Enemy : MonoBehaviour
 
     void SetDirection()
     {
-        xMovement = Random.Range(-1, 2) * speed;
-        yMovement = Random.Range(-1, 2) * speed;
+        xMovement = - speed;
+        yMovement = speed;
     }
 
     void SetDirection(Vector3 playerPosition, Vector3 objectPosition)
     {
         if (Mathf.Abs(playerPosition.x - objectPosition.x) < Mathf.Abs(playerPosition.y - objectPosition.y) )
         {
-            if (playerPosition.x > objectPosition.x)
-                xMovement = Random.Range(0, 2) * speed;
+            if (xMovement > 0)
+                xMovement = -speed;
             else
-                xMovement = Random.Range(-1, 1) * speed;
+                xMovement = speed;
         }
         else
         {
-            if (playerPosition.y < objectPosition.y)
-                yMovement = Random.Range(0, 2) * speed;
+            if (yMovement > 0)
+                yMovement = -speed;
             else
-                yMovement = Random.Range(-1, 1) * speed;
+                yMovement = speed;
         }
     }
 }
