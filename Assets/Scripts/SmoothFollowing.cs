@@ -30,7 +30,7 @@ public class SmoothFollowing : MonoBehaviour
             Target = Player.transform.position;
         else
         {
-            Target =  Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Target = Player.transform.position;
         }
 
         Target.z = zLock;

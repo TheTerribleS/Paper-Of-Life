@@ -22,6 +22,7 @@ public class CinematicsContainer : MonoBehaviour
         currentCinematic = CinematicScenes.Find(x => x.CinematicSceneName == NameOfScene);
         currentScene = 0;
         DisplayOfFrame.sprite = currentCinematic.CinematicFrames[currentScene];
+        Debug.Log("Proceding to scene " + currentScene);
         StartCinematic();
     }
 

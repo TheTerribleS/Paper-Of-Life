@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public Text Dialogue;
+    public CinematicsContainer Cinematics;
 
     private void Start()
     {
         Dialogue.gameObject.SetActive(false);
+        Cinematics.StartImagesCinematic("Intro");
     }
 
     public void UpdateAndShowDialogue(string newDialogue)
