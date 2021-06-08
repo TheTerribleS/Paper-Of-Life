@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Elizabeth.unity
+    guid: 0e72e5fea439353419d609850d33eec2
+  - enabled: 1
+    path: Assets/Scenes/MainGame.unity
+    guid: 288a61b1c547f88438109710c4bc2649
   m_configObjects: {}
